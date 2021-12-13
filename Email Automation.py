@@ -103,6 +103,57 @@ server.sendmail(fromaddr, toaddr, text)
 print("Emails sent successfully")
 server.quit()
 
+                             '1.3 -  EMAIL with multiple attachments'
+#Set up crap for the attachments
+files = 'D:/Rollingpinn/Product photos/'
+filenames = [os.path.join(files, f) for f in os.listdir(files)]
+
+#Set up users for email
+gmail_user = "hr@shopster.ai"
+gmail_pwd = "shopster123!"
+recipients = ['nivedhan1998@gmail.com']
+
+#Create Module
+def mail(to, subject, text, attach):
+   msg = MIMEMultipart()
+   msg['From'] = gmail_user
+   msg['To'] = ", ".join(recipients)
+   msg['Subject'] = subject
+
+   msg.attach(MIMEText(text))
+
+   #get all the attachments
+   for file in filenames:
+      part = MIMEBase('application', 'octet-stream')
+      part.set_payload(open(file, 'rb').read())
+      encoders.encode_base64(part)
+      part.add_header('Content-Disposition', 'attachment; filename="%s"' % file)
+      msg.attach(part)
+
+   mailServer = smtplib.SMTP("smtp.gmail.com", 587)
+   mailServer.ehlo()
+   mailServer.starttls()
+   mailServer.ehlo()
+   mailServer.login(gmail_user, gmail_pwd)
+   mailServer.sendmail(gmail_user, to, msg.as_string())
+   # Should be mailServer.quit(), but that crashes...
+   mailServer.close()
+
+#send it
+mail(recipients,
+   "Its XMAS SEASON!!!!",
+   """
+
+https://rollingpinn.com/product/xmas-0.75lb/
+
+สำหรับปีนี้ The Rolling Pinn ได้นำ ‘Xmas Special’ 
+Tree Cake
+โฉมใหม่ไฉไลกว่าเดิมกลับมาเพื่อให้คุณได้สนุกสนานและเพลิดเพลินในเทศกาลแห่งการให้แสนอบอุ่นด้วยเค้กสุดอลัง. 
+เปิดให้จองแล้วในราคาพิเศษสำหรับ Early Bird Pre-Order ถึงวันที่ 20 ธันวาคมนี้เท่านั้น!  
+มีให้เลือกถึง 3 สี 3 ขนาด สายหวานที่กำลังมองหาเค้กสุดน่ารักอยู่อย่ารอช้า
+""",
+   filenames)
+
 
                               '2-SENDGRID'
 my_sg = sendgrid.SendGridAPIClient(api_key = os.environ.get('SENDGRID_API_KEY'))
