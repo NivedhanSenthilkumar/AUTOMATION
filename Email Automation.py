@@ -127,7 +127,7 @@ mail_json = mail.get()
 response = my_sg.client.mail.send.post(request_body=mail_json)
 
 
-                         'COURIER-CHANNEL'
+                         '3-COURIER-CHANNEL'
 from trycourier import Courier
 client = Courier(auth_token="pk_prod_ZN043V85VAM138K22DMK8G8Y2F8Y")
 resp = client.send(
