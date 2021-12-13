@@ -5,6 +5,7 @@ import os
 from sendgrid.helpers.mail import Mail, Email, To, Content
 
                            '1-SMTP(Sendmail Task Protocol)'
+                           '1.1 - Mail without attachment'
 #DATA
 data = pd.read_excel('D:/shopster/RESUMES/UX Engineer/GL/UI.xlsx')
 #print(data)
@@ -67,6 +68,50 @@ body = "Subject: {}\n\n{}".format(subject,string_decode)
 for email in emails:
     server.sendmail(SenderAddress, email, body)
 server.quit()
+
+
+                               '1.2 - Mail with Attachment'
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
+import pandas as pd
+
+e = pd.read_csv('D:/testt.csv')
+server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+
+server.login("hr@shopster.ai", "shopster123!")
+
+body = ("""
+Hi There
+
+Please refer attachment
+
+Thanks & Regards
+""")
+subject = ["PDF"]
+fromaddr='hr@shopster.ai'
+
+for index, row in e.iterrows():
+    msg = MIMEMultipart()
+msg['From'] = fromaddr
+msg['Subject'] = 'TEST'
+msg.attach(MIMEText(body, 'plain'))
+filename = 'D:/Rollingpinn/Product photos/carrot2.jpg'
+toaddr = data['EMAILS']
+attach_file_name = 'D:/Rollingpinn/Product photos/carrot2.jpg'
+attach_file = open(attach_file_name, 'rb')
+part = MIMEBase('application', 'octate-stream',filename='test.jpg')
+part.set_payload((attach_file).read())
+encoders.encode_base64(part)
+part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
+msg.attach(part)
+text = msg.as_string()
+server.sendmail(fromaddr, toaddr, text)
+print("Emails sent successfully")
+server.quit()
+
 
 
                               '2-SENDGRID'
