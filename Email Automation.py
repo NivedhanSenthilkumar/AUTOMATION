@@ -111,7 +111,7 @@ filenames = [os.path.join(files, f) for f in os.listdir(files)]
 #Set up users for email
 gmail_user = "hr@shopster.ai"
 gmail_pwd = "shopster123!"
-recipients = ['nivedhan1998@gmail.com']
+recipients = data['EMAILS']
 
 #Create Module
 def mail(to, subject, text, attach):
@@ -152,7 +152,7 @@ Tree Cake
 เปิดให้จองแล้วในราคาพิเศษสำหรับ Early Bird Pre-Order ถึงวันที่ 20 ธันวาคมนี้เท่านั้น!  
 มีให้เลือกถึง 3 สี 3 ขนาด สายหวานที่กำลังมองหาเค้กสุดน่ารักอยู่อย่ารอช้า
 """,
-   filenames)
+filenames)
 
 
                               '2-SENDGRID'
