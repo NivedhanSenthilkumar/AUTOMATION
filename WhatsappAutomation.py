@@ -1,11 +1,11 @@
 'SINGLE MESSAGE'
 import pywhatkit
-pywhatkit.sendwhatmsg('+919790766998','HI',12,19)
+pywhatkit.sendwhatmsg('+919790766998','HI',17,37)
+
 
 'BULK MESSAGES'
 # Program to send bulk customized message through WhatsApp web application
 # Author @inforkgodara
-
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys

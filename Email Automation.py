@@ -4,11 +4,11 @@ import sendgrid
 import os
 from sendgrid.helpers.mail import Mail, Email, To, Content
 
+
                            '1-SMTP(Sendmail Task Protocol)'
                            '1.1 - Mail without attachment'
 #DATA
 data = pd.read_excel('D:/shopster/RESUMES/UX Engineer/GL/UI.xlsx')
-#print(data)
 
 #CREDENTIALS
 SenderAddress = "hr@shopster.ai"
