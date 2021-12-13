@@ -78,21 +78,15 @@ from email.mime.base import MIMEBase
 from email import encoders
 import pandas as pd
 
-e = pd.read_csv('D:/testt.csv')
+#LOGIN
 server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-
 server.login("hr@shopster.ai", "shopster123!")
-
-body = ("""
-Hi There
-
-Please refer attachment
-
-Thanks & Regards
-""")
-subject = ["PDF"]
 fromaddr='hr@shopster.ai'
 
+#MESSAGE
+body = ("""Hi There Please refer attachment Thanks & Regards""")
+
+#MAIL BLAST
 for index, row in e.iterrows():
     msg = MIMEMultipart()
 msg['From'] = fromaddr
