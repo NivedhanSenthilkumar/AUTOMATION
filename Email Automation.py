@@ -1,9 +1,14 @@
+
+                                'LIBRARIES'
 import pandas as pd
-import smtplib
 import sendgrid
 import os
 from sendgrid.helpers.mail import Mail, Email, To, Content
-
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
+from email import encoders
 
                            '1-SMTP(Sendmail Task Protocol)'
                            '1.1 - Mail without attachment'
@@ -69,15 +74,7 @@ for email in emails:
     server.sendmail(SenderAddress, email, body)
 server.quit()
 
-
                                '1.2 - Mail with Attachment'
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from email.mime.base import MIMEBase
-from email import encoders
-import pandas as pd
-
 #LOGIN
 server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
 server.login("hr@shopster.ai", "shopster123!")
@@ -105,7 +102,6 @@ text = msg.as_string()
 server.sendmail(fromaddr, toaddr, text)
 print("Emails sent successfully")
 server.quit()
-
 
 
                               '2-SENDGRID'
