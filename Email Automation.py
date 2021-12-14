@@ -117,7 +117,7 @@ recipients = data['EMAILS']
 def mail(to, subject, text, attach):
    msg = MIMEMultipart()
    msg['From'] = gmail_user
-   msg['To'] = ", ".join(recipients)
+   msg['To'] = data['EMAILS']
    msg['Subject'] = subject
 
    msg.attach(MIMEText(text))
