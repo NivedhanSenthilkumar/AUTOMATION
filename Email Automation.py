@@ -185,3 +185,66 @@ resp = client.send(
   }
 )
 
+                             '4-AMAZON SEND EMAIL SERVICE(SES)'
+#1-Create Template
+import boto3
+# Create SES client
+ses = boto3.client('ses')
+response = ses.create_template(
+  Template = {
+    'TemplateName' : 'TEMPLATE_NAME',
+    'SubjectPart'  : 'SUBJECT_LINE',
+    'TextPart'     : 'TEXT_CONTENT',
+    'HtmlPart'     : 'HTML_CONTENT'
+  }
+)
+
+##2-Define template
+import boto3
+# Create SES client
+ses = boto3.client('ses')
+response = ses.get_template(
+  TemplateName = 'TEMPLATE_NAME'
+)
+print(response)
+
+##3-LIST OF ALL CREATED TEMPLATES
+import boto3
+# Create SES client
+ses = boto3.client('ses')
+response = ses.list_templates()
+print(response)
+
+##4-ACTUAL TEMPLATE TO SEND
+import boto3
+# Create SES client
+ses = boto3.client('ses')
+response = ses.update_template(
+  Template={
+    'TemplateName': 'TEMPLATE_NAME',
+    'SubjectPart' : 'iTS',
+    'TextPart'    : '',
+    'HtmlPart'    : '<html><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title></title><!--[if mso]>    <style type="text/css">      .f-fallback  {        font-family: Arial, sans-serif;      }    </style>  <![endif]--></head><body style="width: 100%; height: 100%; margin: 0; -webkit-text-size-adjust: none; font-family: &quot;Roboto&quot;, Helvetica, Arial, sans-serif; background-color: #F4F4F7; color: #51545E"><style>@media only screen and (max-width: 500px) { .button { width: 100% !important; text-align: center !important } }@media only screen and (max-width: 600px) { .email-body_inner, .email-footer { width: 100% !important } }@media (prefers-color-scheme: dark) { body, .email-body, .email-body_inner, .email-content, .email-wrapper, .email-masthead, .email-footer { background-color: #333 !important; color: #FFF !important } p, ul, ol, blockquote, h1, h2, h3, .purchase_item { color: #FFF !important } .attributes_content, .discount { background-color: #222 !important } .email-masthead_name { text-shadow: none !important } .email-masthead .shopster-logo { background-size: 120px 28px } }</style><table class="email-wrapper" role="presentation" style="width: 100%; margin: 0; padding: 0; -premailer-width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; background-color: #F4F4F7" width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td style="word-break: break-word; font-family: &quot;Roboto&quot;, Helvetica, Arial, sans-serif; font-size: 16px" align="center"><table class="email-content" role="presentation" style="width: 100%; margin: 0; padding: 0; -premailer-width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0" width="100%" cellspacing="0" cellpadding="0"><tbody><tr><td class="email-masthead" style="word-break: break-word; font-family: &quot;Roboto&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 25px 0; text-align: center; background-color: #ffaaf2"><a class="f-fallback email-masthead_name" href="https://shopster.ai/" style="font-size: 16px; font-weight: bold; color: #A8AAAF; text-decoration: none; text-shadow: 0 1px 0 white"><!-- <img src="https://specials-images.forbesimg.com/imageserve/5d3703e2f1176b00089761a6/960x0.jpg?cropX1=836&cropX2=5396&cropY1=799&cropY2=3364" width="120"> --><div class="shopster-logo" style="background-size: 120px 28px; width: 100%; margin: 0 auto; background-color: #ffaaf2"><img alt="" src="https://d23ehnen5s5dj6.cloudfront.net/static/pictures/icon.png" style="border: none" width="70px"></div></a></td></tr><!-- Email Body --><tr><td cellpadding="0" cellspacing="0" class="email-body" style="word-break: break-word; font-family: &quot;Roboto&quot;, Helvetica, Arial, sans-serif; font-size: 16px; width: 100%; margin: 0; padding: 0; -premailer-width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; background-color: #FFF" width="100%"><table class="email-body_inner" role="presentation" style="width: 570px; margin: 0 auto; padding: 0; -premailer-width: 570px; -premailer-cellpadding: 0; -premailer-cellspacing: 0; background-color: #FFF" width="570" cellspacing="0" cellpadding="0" align="center"><!-- Body content --><tbody><tr><td class="content-cell" style="word-break: break-word; font-family: &quot;Roboto&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 35px"><div class="f-fallback"><h1 class="capitalize" style="margin-top: 0; color: #333; font-size: 22px; font-weight: bold; text-align: left; text-transform: capitalize">Hello ,</h1><p style="margin: 0.4em 0 1.1875em; font-size: 16px; line-height: 1.625; color: #51545E">A quick reminder from your friend  that free cookies are waiting to be grabbed!.</p><p style="margin: 0.4em 0 1.1875em; font-size: 16px; line-height: 1.625; color: #51545E"><a href="https://rollingpinn.com/login/line" style="color: #16A489">Click this link to visit the store and make your first purchase!</a></p><p style="margin: 0.4em 0 1.1875em; font-size: 16px; line-height: 1.625; color: #51545E">Cheers,                          <br>The Rolling Pinn</p></div></td></tr></tbody></table></td></tr><tr><td style="word-break: break-word; font-family: &quot;Roboto&quot;, Helvetica, Arial, sans-serif; font-size: 16px"><table class="email-footer" role="presentation" style="width: 570px; margin: 0 auto; padding: 0; -premailer-width: 570px; -premailer-cellpadding: 0; -premailer-cellspacing: 0; text-align: center" width="570" cellspacing="0" cellpadding="0" align="center"><tbody><tr><td class="content-cell" style="word-break: break-word; font-family: &quot;Roboto&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 35px" align="center"><p style="margin: 0.4em 0 1.1875em; font-size: 16px; line-height: 1.625; color: #6B6E76"><img alt="" src="https://d23ehnen5s5dj6.cloudfront.net/static/pictures/shopster-logo-mail.png" style="height: 24px; width: 24px;vertical-align: middle;"><span class="f-fallback sub align-center" style="text-align: center; margin: 0px 5px -5px;line-height: unset;font-size: 13px;"><a href="https://shopster.ai/?utm_source=therollingpinn&amp;utm_medium=email&amp;utm_campaign=referral" style="color: #16A489">Powered by Shopster ©️ 2021.</a><br>All rights reserved.</span></p></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></body></html>'})
+
+
+##5-SENDING EMAIL
+import boto3
+# Create SES client
+ses = boto3.client('ses')
+response = ses.send_templated_email(
+  Source='therollingpinn3@gmail.com',
+  Destination={
+    'ToAddresses': [
+      'nivedhan1998@gmail.com','nivedhansenthilkumar@gmail.com'
+    ],
+    'CcAddresses': [
+      'hr@shopster.ai',
+    ]
+  },
+  ReplyToAddresses=[
+    'nivedhan1998@gmail.com',
+  ],
+  Template='TEMPLATE_NAME',
+  TemplateData='{ \"REPLACEMENT_TAG_NAME\":\"REPLACEMENT_VALUE\" }'
+)
+print(response)
